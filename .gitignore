@@ -1,0 +1,13 @@
+.DS_Store
+/trained_weights
+/models/ops/build
+/models/ops/dist
+/models/ops/MultiScaleDeformableAttention3D.egg-info
+/models/models2D/ops2D
+__pycache__
+/env
+/dump/sample
+.idea
+/models/ops/MultiScaleDeformableAttention.egg-info
+env_script.sh
+/wandb
