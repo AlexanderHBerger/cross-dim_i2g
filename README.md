@@ -1,4 +1,8 @@
-# Relationformer: A Unified Framework for Image-to-Graph Generation
+# Cross-domain and Cross-dimension Learning for Image-to-Graph Transformers
+
+## Acknowledgement
+
+This repository is largely based on the relationformer repository and paper. For more information we refer to https://github.com/suprosanna/relationformer and the corresponding paper.
 
 ## Requirements
 * CUDA>=9.2
@@ -29,11 +33,6 @@ code_root/
     └── 20cities/
 ```
 
-After downloading the dataset run the following script to preprocess and prepare the data for training
-```
-python generate_data.py configs/cities.json global_diverse_cities
-```
-
 The set-name (e.g. 'global_diverse_cities') will be the name for the data folder. The files must be in the form '<Cityname>_region_<id>_<rest>' where rest can be one of ['refine_gt_graph.p', 'gt.png', 'sat.png'].
 
 ## 2. Training
@@ -42,22 +41,6 @@ The set-name (e.g. 'global_diverse_cities') will be the name for the data folder
 
 The config file can be found at `.configs/road_rgb_2D.yaml`. Make custom changes if necessary.
 
-#### 2.2.a Training on multiple-GPU (e.g. 3 GPUs)
-
-For example, the command for training Relationformer is following:
-
-```bash
-python train.py --config configs/road_rgb_2D.yaml --cuda_visible_device 0 1 2 --nproc_per_node 3
-```
-
-<!-- #### 2.2.b Training on slurm cluster (e.g. 3 GPUs)
-
-If you are using slurm cluster, you can simply run the following command to train on 1 node:
-
-```bash
-srun -u --nodelist worker-1 --gres=gpu:3 -c 16 python train.py --config configs/synth_3D.yaml --nproc_per_node=3
-``` -->
-
 ## 3. Evaluation
 
 Once you have the config file and trained model of Relation, run following command to evaluate it on test set:
@@ -65,7 +48,3 @@ Once you have the config file and trained model of Relation, run following comma
 ```bash
 python test.py --config configs/road_rgb_2D.yaml --checkpoint ./trained_weights/last_checkpoint.pt
 ```
-
-## 4. Interactive notebook
-
-Please find the `debug_relationformer.ipynb` for interactive evaluation and visualization
